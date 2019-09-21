@@ -41,15 +41,14 @@ var rootCmd = &cobra.Command{
 
 func init() {
     filename = "C:\\Users\\Lilian\\go\\src\\github.com\\LilianAvry\\code-of-road\\save.txt"
+    handleNoFile()
 
     rootCmd.PersistentFlags().StringVarP(&add, "add", "a", "none", "Add new serie")
     rootCmd.PersistentFlags().BoolVarP(&stat, "stat", "s", false, "Display Statistics")
     rootCmd.PersistentFlags().BoolVarP(&display, "display", "d", false, "Display series")
     rootCmd.PersistentFlags().IntVarP(&last, "last", "l", 0, "Display x last series")
 
-    content := readFile()
-    series := strings.Split(content, ";")
-    list = app.NewList(series)
+    initializeList()
 }
 
 func Execute() {
@@ -63,7 +62,10 @@ func Execute() {
 func addAction () {
     serie := fmt.Sprintf(";%s", add)
     appendFile(serie)
+    
     fmt.Printf("La valeur %v a été enregistrée !\n", add)
+
+    initializeList()
 }
 
 func statAction () {
@@ -89,7 +91,11 @@ func displayAction () {
 }
 
 func lastAction () {
-    fmt.Printf("Affichage des %v dernières séries enregistrées :\n", last)
+    if last == 1 {
+        fmt.Println("Affichage de la dernière série enregistrée :")
+    } else {
+        fmt.Printf("Affichage des %v dernières séries enregistrées :\n", last)
+    }
 
     start := list.Length() - last
     base := start + 1
@@ -122,12 +128,25 @@ func readFile () string {
     return string(content)
 }
 
+func initializeList () {
+    content := readFile()
+    series := strings.Split(content, ";")
+    list = app.NewList(series)
+}
+
 /*
  * Utils
  */
 
-func handleError(e error) {
-    if e != nil {
-        panic(e)
+func handleError(err error) {
+    if err != nil {
+        panic(err)
+    }
+}
+
+func handleNoFile() {
+    _, err := os.Open(filename)
+    if err != nil {
+        os.Create(filename)
     }
 }

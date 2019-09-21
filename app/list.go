@@ -21,10 +21,12 @@ func NewList(series []string) *List {
 	newList := make([]int, 0)
 
 	for _, element := range series {
-		number, err := strconv.Atoi(element)
-		handleError(err)
+		if element != "" {
+			number, err := strconv.Atoi(element)
+			handleError(err)
 
-		newList = append(newList, number)
+			newList = append(newList, number)
+		}
 	}
 
 	return &List{
