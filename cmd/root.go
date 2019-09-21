@@ -53,11 +53,15 @@ func statAction () {
         series := strings.Split(content, ";")
         list := app.NewList(series)
 
-        statAll := list.StatAll()
-        statLast := list.StatLast()
+        if list.Length() > 0 {
+                statAll := list.StatAll()
+                fmt.Printf("Moyenne totale : %v\n", statAll)   
+        }
 
-        fmt.Printf("Moyenne totale : %v\n", statAll)
-        fmt.Printf("Moyenne des 5 dernières séries : %v\n", statLast)
+        if list.Length() > 5 {
+                statLast := list.StatLast()
+                fmt.Printf("Moyenne des 5 dernières séries : %v\n", statLast)     
+        }  
 }
 
 
