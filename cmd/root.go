@@ -42,8 +42,8 @@ var rootCmd = &cobra.Command{
 func init() {
     dir, err := os.Getwd()
     handleError(err)
-    
-    filename = fmt.Sprintf("%v\\save.txt", dir)
+
+    filename = fmt.Sprintf("%v\\cor.txt", dir)
     handleNoFile()
 
     rootCmd.PersistentFlags().StringVarP(&add, "add", "a", "none", "Add new serie")
