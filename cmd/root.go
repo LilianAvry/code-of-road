@@ -40,7 +40,10 @@ var rootCmd = &cobra.Command{
 }
 
 func init() {
-    filename = "C:\\Users\\Lilian\\go\\src\\github.com\\LilianAvry\\code-of-road\\save.txt"
+    dir, err := os.Getwd()
+    handleError(err)
+    
+    filename = fmt.Sprintf("%v\\save.txt", dir)
     handleNoFile()
 
     rootCmd.PersistentFlags().StringVarP(&add, "add", "a", "none", "Add new serie")
@@ -62,7 +65,7 @@ func Execute() {
 func addAction () {
     serie := fmt.Sprintf(";%s", add)
     appendFile(serie)
-    
+
     fmt.Printf("La valeur %v a été enregistrée !\n", add)
 
     initializeList()
