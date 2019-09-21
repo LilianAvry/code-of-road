@@ -10,7 +10,7 @@ import (
  */
  
 type List struct {
-	series []int
+	Series []int
 }
 
 /*
@@ -28,7 +28,7 @@ func NewList(series []string) *List {
 	}
 
 	return &List{
-		series: newList,
+		Series: newList,
 	}
 }
 
@@ -38,14 +38,14 @@ func NewList(series []string) *List {
 
 // Return numbers of series
 func (list *List) Length() int {
-	return len(list.series)
+	return len(list.Series)
 }
 
 // Return the average of all results
 func (list *List) StatAll() float64 {
 	stat := 0
 
-	for _, element := range list.series {
+	for _, element := range list.Series {
 			stat += element
 	}
 
@@ -55,7 +55,7 @@ func (list *List) StatAll() float64 {
 // Return the average of the 5 last results
 func (list *List) StatLast() float64 {
 	stat := 0
-	series := list.series[list.Length() - 5:] // Select the 5 last series
+	series := list.Series[list.Length() - 5:] // Select the 5 last series
 
 	for _, element := range series {
 		stat += element
@@ -66,8 +66,8 @@ func (list *List) StatLast() float64 {
 
 // Add a new serie to the list
 func (list *List) AddSerie(serie int) []int {
-	list.series = append(list.series, serie)
-	return list.series
+	list.Series = append(list.Series, serie)
+	return list.Series
 }
 
 /*
