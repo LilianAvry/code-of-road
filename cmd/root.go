@@ -22,7 +22,7 @@ var rootCmd = &cobra.Command{
     Long: "Code Of Road : Une petite application en ligne de commande pour noter le nombre d'erreur au code de la route !",
     Run: func(cmd *cobra.Command, args []string) {
         if add != "none" {
-            addAction(add)
+            addAction()
         }
         
         if stat {
@@ -30,11 +30,11 @@ var rootCmd = &cobra.Command{
         }
         
         if display {
-            printAction(0)
+            displayAction()
         }
 
         if last > 0 {
-            printAction(last)
+            lastAction()
         }
     },
 }
@@ -60,10 +60,10 @@ func Execute() {
  * Command Actions
  */
 
-func addAction (value string) {
-    serie := fmt.Sprintf(";%s", value)
+func addAction () {
+    serie := fmt.Sprintf(";%s", add)
     appendFile(serie)
-    fmt.Printf("La valeur %v a été enregistrée !\n", value)
+    fmt.Printf("La valeur %v a été enregistrée !\n", add)
 }
 
 func statAction () {
@@ -80,15 +80,22 @@ func statAction () {
     }  
 }
 
-func printAction (number int) {
-    if number == 0 {
-        fmt.Println("Affichage de toutes les séries enregistrées :")
-    } else if number > 0 {
-        fmt.Printf("Affichage des %v dernières séries enregistrées :\n", number)
-    }
+func displayAction () {
+    fmt.Println("Affichage de toutes les séries enregistrées :")
 
-    for i, serie := range list.Series[number:] {
+    for i, serie := range list.Series {
         fmt.Printf(" - Série numéro %v : %v fautes\n", i + 1, serie)
+    }
+}
+
+func lastAction () {
+    fmt.Printf("Affichage des %v dernières séries enregistrées :\n", last)
+
+    start := list.Length() - last
+    base := start + 1
+
+    for i, serie := range list.Series[start:] {
+        fmt.Printf(" - Série numéro %v : %v fautes\n", base + i, serie)
     }
 }
 
