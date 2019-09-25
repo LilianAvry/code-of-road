@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../lil-ui/lil.css">
+    </head>
+    <body>
+        <main>
+            <div class="layout justify-center">
+                <div class="column flex-8 padding" style="margin-top: 100px">
+                    <article class="card">
+                        <h2>Code of Road</h2>
+                        <p>Une petite application en ligne de commande pour noter le nombre de fautes au code de la route.</p>
+                        <p>Je sais que Code of Road ça existe pas en anglais, mais c'est stylé comme nom.</p>
+                        <p><a href="https://github.com/LilianAvry/code-of-road/releases/tag/v1.0.0" class="button button-primary">Télécharger</a> Version 1.0.0</p>
+                        <br>
+                        <p>Liste des commandes</p>
+                        <div class="margin">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Commande</th>
+                                        <th>Description</th>
+                                        <th>Exemple</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>-a n</td>
+                                        <td>Permet d'enregistrer une série avec "n" fautes au total à la fin de la série.</td>
+                                        <td>cor -a 5</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-s</td>
+                                        <td>Affiche quelques statistiques (juste des moyennes pour l'instant mais ça va s'étoffer à l'avenir).</td>
+                                        <td>cor -s</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-d</td>
+                                        <td>Affiche la liste de toutes les séries enregistrées avec le nombre de fautes réalisées pour chaque série.</td>
+                                        <td>cor -d</td>
+                                    </tr>
+                                    <tr>
+                                        <td>-l n</td>
+                                        <td>Affiche les "n" dernières séries enregistrées</td>
+                                        <td>cor -l 3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
